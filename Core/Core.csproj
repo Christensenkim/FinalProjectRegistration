@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ApplicationService\" />
+    <ProjectReference Include="..\Core.entity\Core.entity.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core.entity\Core.entity.csproj" />
+    <Folder Include="ApplicationService\NewFolder\" />
   </ItemGroup>
 
 </Project>
