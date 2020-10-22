@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using FinalProjectRegistration.Core.Entity;
+using Core.entity;
 
 namespace Core.DomainService
 {
