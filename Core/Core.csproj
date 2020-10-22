@@ -8,8 +8,4 @@
     <ProjectReference Include="..\Core.entity\Core.entity.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ApplicationService\NewFolder\" />
-  </ItemGroup>
-
 </Project>
