@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FinalProjectRegistration.Core.Entity;
 
 namespace Core.DomainService
 {
