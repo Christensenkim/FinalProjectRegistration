@@ -1,10 +1,19 @@
-﻿using Core.entity;
+﻿using Core.DomainService;
+using Core.entity;
 using System.Collections.Generic;
+using System.IO.Compression;
 
 namespace Core.ApplicationService.Services
 {
     public class TeamService : ITeamService
     {
+        private ITeamRepository _TeamRepository;
+
+        public TeamService(ITeamRepository repo)
+        {
+            _TeamRepository = repo;
+        }
+
         public void AddStudentToTeam(Team t, Student s)
         {
             throw new System.NotImplementedException();
@@ -37,7 +46,9 @@ namespace Core.ApplicationService.Services
 
         public void RemoveStudentFromTeam(Team t, Student s)
         {
-            throw new System.NotImplementedException();
+            t.TeamList.Remove(s);
+
+            _TeamRepository.Update(t);
         }
 
         public void RemoveTeam(Team t)

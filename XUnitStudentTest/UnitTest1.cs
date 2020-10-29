@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Core.ApplicationService.Services;
 using Core.DomainService;
 using Core.entity;
+using Infrastructure;
 using Moq;
 using Xunit;
 
@@ -10,6 +12,7 @@ namespace XUnitStudentTest
     public class UnitTest1
     {
         private Mock<IStudentRepository> mockRepository;
+        private Mock<ITeamRepository> mockTeamRepo;
 
         [Fact]
         public void Test1()
@@ -39,6 +42,56 @@ namespace XUnitStudentTest
             };
 
             Assert.Throws<InvalidOperationException>(() => studentService.Add(student));
+        }
+
+        [Fact]
+        public void DeleteStudentFromTeamTest()
+        {
+            //Arrange
+            mockTeamRepo = new Mock<ITeamRepository>();
+            TeamService teamService = new TeamService(mockTeamRepo.Object);
+
+            Team team = new Team()
+            {
+                id = 1,
+                TeamList = new List<Student>()
+            };
+
+            Student student1 = new Student()
+            {
+                ID = 1,
+            };
+            FakeDB.teams.Add(student1);
+            team.TeamList.Add(student1);
+
+            Student student2 = new Student()
+            {
+                ID = 2,
+            };
+            FakeDB.teams.Add(student2);
+            team.TeamList.Add(student2);
+
+            Student student3 = new Student()
+            {
+                ID = 3,
+            };
+            FakeDB.teams.Add(student3);
+            team.TeamList.Add(student3);
+
+            Student student4 = new Student()
+            {
+                ID = 4,
+            };
+            FakeDB.teams.Add(student4);
+            team.TeamList.Add(student4);
+
+            //Act
+            teamService.RemoveStudentFromTeam(team, student3);
+
+            //Assert
+            List<Student> result = new List<Student>() {student1, student2, student4};
+
+            Assert.Equal(result, FakeDB.teams);
         }
     }
 }

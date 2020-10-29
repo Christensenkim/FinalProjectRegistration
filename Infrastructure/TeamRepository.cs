@@ -28,7 +28,7 @@ namespace Infrastructure
 
         public void Update(Team t)
         {
-            throw new System.NotImplementedException();
+            FakeDB.UpdateTeam(t);
         }
     }
 }
